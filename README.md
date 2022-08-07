@@ -44,6 +44,11 @@ truffle compile
 truffle develop
 test
 ```
+3. Deploy smart contract to local test network, Ganache
+
+```
+truffle migrate
+```
 
 #### Run the React Native application (All mentioned technical prerequisites are required, and a Google Chrome browser)
 Setup of local Ganache test network is needed as well as the steps related to running on the command line interface
