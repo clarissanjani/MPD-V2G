@@ -20,42 +20,42 @@ Before running the file, make sure all packages are installed. The python script
 
 Download or clone the repository
 
-'''
+```
 git clone https://github.com/clarissanjani/Trixo-Application.git
-'''
+```
 
 Run on the command line interface
 1, Compile contract
 
-'''
+```
 truffle compile
-'''
+```
 
 2. Run the test cases
 
-'''
+```
 truffle develop
 test
-'''
+```
 
 Run the React Native application
 1. Change to the client directory
 
-'''
+```
 cd client
-'''
+```
 
 2. Download all dependencies
 
-'''
+```
 npm install
-'''
+```
 
 3. Start the application
 
-'''
+```
 npm start
-'''
+```
 
 ## Known issues
 **xx**: xx
