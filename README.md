@@ -19,16 +19,20 @@ As part of the Center of Digital Technology and Management (CDTM) course, Managi
 Before running the file, make sure all packages are installed. The python script is not dependent on packages from outside the standard library. Java Packages are included in the source code. For Vadere, the latest stable release is sufficient. Perform the following on the command line interface in your computer's terminal. 
 
 Download or clone the repository
+
 '''
 git clone https://github.com/clarissanjani/Trixo-Application.git
 '''
 
 Run on the command line interface
 1, Compile contract
+
 '''
 truffle compile
 '''
+
 2. Run the test cases
+
 '''
 truffle develop
 test
@@ -36,14 +40,19 @@ test
 
 Run the React Native application
 1. Change to the client directory
+
 '''
 cd client
 '''
+
 2. Download all dependencies
+
 '''
 npm install
 '''
+
 3. Start the application
+
 '''
 npm start
 '''
