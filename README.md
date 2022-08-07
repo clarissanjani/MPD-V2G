@@ -8,9 +8,11 @@ As part of the Center of Digital Technology and Management (CDTM) course, Managi
 **Description**: The focus of our prototype is to demonstrate the role and integration of the blockchain network, seeing it as the core of a decentralized EV charging network. As this is only a prototype, we developed on a private Ganache network. This setup is ideal to showcase how the interaction in the blockchain network and the integration works on a small scale. Furthermore, it makes it possible for us to focus on the design of the smart contract, which is core to our solution. To bring our blockchain solution to serve the public, further improvements are necessary.
 
 ## Technical Prerequisites
-* Metamask: Google Chrome extension used to test the submission of one single charging session and how the transaction went through
-* Ganache: personal Ethereum Blockchain used to test smart contracts where you can deploy contracts, develop applications, run tests and perform other tasks without any cost
-* Truffle: development environment, testing framework and asset pipeline for blockchains using the Ethereum Virtual Machine (EVM), aiming to compile smart contracts for development purposes
+The following prerequisites are required to test the dApp.
+* Node.js: Javascript run time for developing dApp > https://nodejs.org/en/
+* Metamask: Google Chrome extension used to test the submission of one single charging session and how the transaction went through > https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en
+* Ganache: personal Ethereum Blockchain used to test smart contracts where you can deploy contracts, develop applications, run tests and perform other tasks without any cost > https://trufflesuite.com/ganache/
+* Truffle: development environment, testing framework and asset pipeline for blockchains using the Ethereum Virtual Machine (EVM), aiming to compile smart contracts for development purposes > https://trufflesuite.com/docs/truffle/getting-started/installation/
 * Ethers.js: JavaScript library for Web3 development and interacting with the Ethereum Blockchain ecosystem. It is an alternative to Web3.js which we had trouble using due to the higher number of dependencies that required installing
 
 ## Installation
