@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '60vh',
+    height: '70vh',
     marginTop: '100px',
     margin: '0 auto',
     width: '50%',
@@ -96,18 +96,38 @@ function App() {
  const [amount, setAmount] = useState(0);
  const [myBid, setMyBid] = useState(0);
  const [isOwner, setIsOwner] = useState(false);
- const [highestBid, setHighestBid] = useState(0);
+ const [tradedPooledCapacity, setTradedPooledCapacity] = useState(0);
  const [highestBidder, setHighestBidder] = useState('');
  const [startTime, setStartTime] = useState('');
  const [endDate, setEndDate] = useState(new Date());
 
 
+ // Define default values for slider
+ const [minCapacity, setMinCapacity] = useState(40);
+ const [maxCapacity, setMaxCapacity] = useState(80);
  // values for the slider
- const [value, setValue] = React.useState([20, 37]);
+ const [committedCapacity, setCommittedCapacity] = React.useState([minCapacity, maxCapacity]);
+ const [pooledCapacity, setPooledCapacity] = useState(0);
 
- const handleChange = (event, newValue) => {
-   setValue(newValue);
+ // Define haard-coded values for selling price of energy and nissan leaf stats
+ const savingsPerKwH = 0.5;
+ const nissanLeaf = {capacity: 40, chargingCostkWh: 0.13, range: 225};
+
+ // Define some values for committing energy
+ const energyCommitted = (maxCapacity - minCapacity) / 100 * nissanLeaf.capacity;
+ const energySavings = savingsPerKwH * energyCommitted;
+ const chargingCost = nissanLeaf.chargingCostkWh * maxCapacity / nissanLeaf.capacity;
+
+ const handleChangeCapacity = (event, newCommittedCapacity) => {
+   setCommittedCapacity(newCommittedCapacity);
+   setMinCapacity(minCapacity)
+   setMaxCapacity(maxCapacity)
  };
+
+  const handleChangePooledCapacity = (event, newPooledCapacity) => {
+    newPooledCapacity = maxCapacity / 100 * nissanLeaf.range;
+    setPooledCapacity(newPooledCapacity);
+  };
 
  // Sets up a new Ethereum provider and returns an interface for interacting with the smart contract
  async function initializeProvider() {
@@ -128,15 +148,15 @@ function App() {
     setStartTime(current.toLocaleDateString());
   }
 
- async function fetchHighestBid() {
+ async function fetchBestBid() {
    if (typeof window.ethereum !== 'undefined') {
      const contract = await initializeProvider();
      try {
-       const highestBid = await contract.fetchHighestBid();
-       const { bidAmount, bidder } = highestBid;
+       const fetchBestBid = await contract.fetchBestBid();
+       const { bidAmount, bidder } = tradedPooledCapacity;
 
      // Convert bidAmount from Wei to Ether and round value to 4 decimal places
-        setHighestBid(parseFloat(formatEther(bidAmount.toString())).toPrecision(4));
+        setTradedPooledCapacity(parseFloat(formatEther(bidAmount.toString())).toPrecision(4));
         setHighestBidder(bidder.toLowerCase());
      } catch (e) {
        console.log('error fetching highest bid: ', e);
@@ -179,7 +199,7 @@ function App() {
        // Wait for the smart contract to emit the LogBid event then update component state
        contract.on('LogBid', (_, __) => {
          fetchMyBid();
-         fetchHighestBid();
+         fetchBestBid();
        });
      } catch (e) {
        console.log('error making bid: ', e);
@@ -193,7 +213,7 @@ function App() {
      // Wait for the smart contract to emit the LogWithdrawal event and update component state
      contract.on('LogWithdrawal', (_) => {
        fetchMyBid();
-       fetchHighestBid();
+       fetchBestBid();
      });
      try {
        await contract.withdraw();
@@ -211,7 +231,7 @@ function App() {
    if (account) {
      fetchOwner();
      fetchMyBid();
-     fetchHighestBid();
+     fetchBestBid();
    }
  }, [account]);
 
@@ -259,45 +279,22 @@ function App() {
             <h4>Set your desired and minimum battery charge.</h4>
           </Typography>
           <Slider
-            value={value}
-            onChange={handleChange}
+            value={committedCapacity}
+            onChange={committedCapacity}
             valueLabelDisplay="auto"
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
         </Box>
-       <h4>Estimated Session Savings: {myBid}</h4>
-       <h4>Estimated Charging Cost: {myBid}</h4>
-       <h4>My Bid for Pooled Capacity: {myBid}</h4>
-       <h4>Highest Bid Amount for Pooled Capacity: {highestBid}</h4>
-       <h4>
-         Auction Highest Bidder:{' '}
-         {highestBidder === emptyAddress
-           ? 'null'
-           : highestBidder === account
-           ? 'Lotta'
-           : highestBidder}
-       </h4>
-       {!isOwner ? (
-         <form onSubmit={submitBid}>
-           <input
-             value={amount}
-             onChange={(event) => setAmount(event.target.value)}
-             name="Pooled Capacity" // Enter Bid Amount
-             type="number"
-             placeholder="Enter Pooled Capacity " // Enter Bid Amount
-           />
-         </form>
-       ) : (
-         ""
-       )}
+       <h4>Minimum Driving Distance: {minCapacity / 100 * nissanLeaf.range} km</h4>
+       <h4>Energy committed: {energyCommitted} kW</h4>
+       <h4>Estimated Session Savings: {energySavings} €</h4>
+       <h4>Estimated Charging Cost: {chargingCost} €</h4>
        <p></p>
        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '8vh'}}>
            <Stack direction="row" spacing={2}>
+             <Button className={classes.submitButton} onClick={submitBid} variant='outlined' color='primary' type="submit">Submit</Button>
              <Button variant="outlined" color="error">Cancel</Button>
-             <Button className={classes.submitButton} variant='outlined' color='primary' type="submit">
-                Submit
-             </Button>
            </Stack>
        </div>
      </div>

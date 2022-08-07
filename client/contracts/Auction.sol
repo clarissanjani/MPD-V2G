@@ -7,19 +7,21 @@ contract Auction {
     uint256 public endTime;
     mapping(address => uint256) public bids;
 
-    struct House {
-        string houseType;
-        string houseColor;
-        string houseLocation;
+    struct ElectricVehicle { // Electric Vehicle
+        address id;
+        string model;
+        uint256 totalCapacity;
+        uint256 committedCapacity;  // get from app
     }
 
-    struct HighestBid {
+    struct TradedPoolCapacity {
         uint256 bidAmount;
-        address bidder;
+        uint256 sellingPrice;
+        address bidders; // code for the bidders @inheritdoc single traading capacity
     }
 
-    House public newHouse;
-    HighestBid public highestBid;
+    ElectricVehicle public newElectricVehicle;
+    TradedPoolCapacity public tradedPoolCapacity;
 
     // modifiers
     // Modifiers
@@ -36,39 +38,39 @@ contract Auction {
         _;
     }
     modifier notOwner() {
-        require(msg.sender != owner, 'Owner is not allowed to bid.');
+        require(msg.sender != owner, 'Owner is not allowed to commit capacity');
         _;
     }
     // Events
-    event LogBid(address indexed _highestBidder, uint256 _highestBid);
+    event LogBid(address indexed _bestBiddedCapacity, uint256 _tradedPoolCapacity);
     event LogWithdrawal(address indexed _withdrawer, uint256 amount);
 
     // Assign values to some properties during deployment
     constructor () {
         owner = msg.sender;
         startTime = block.timestamp;
-        endTime = block.timestamp + 1 hours;
-        newHouse.houseColor = '#FFFFFF';
-        newHouse.houseLocation = 'Sask, SK';
-        newHouse.houseType = 'Townhouse';
+        endTime = block.timestamp + 1; // 12 hours based on finished time of charging
+        newElectricVehicle.model = 'Nissan Leaf';
+        newElectricVehicle.totalCapacity = 40;
     }
 
+    // make bid based on the traded pool capacity
     function makeBid() public payable isOngoing() notOwner() returns (bool) {
         uint256 bidAmount = bids[msg.sender] + msg.value;
-        require(bidAmount > highestBid.bidAmount, 'Bid error: Make a higher Bid.');
+        require(bidAmount > tradedPoolCapacity.bidAmount, 'Bid error: Pool more capacity');
 
-        highestBid.bidder = msg.sender;
-        highestBid.bidAmount = bidAmount;
+        tradedPoolCapacity.bidders = msg.sender;
+        tradedPoolCapacity.bidAmount = bidAmount;
         bids[msg.sender] = bidAmount;
         emit LogBid(msg.sender, bidAmount);
         return true;
     }
 
     function withdraw() public notOngoing() isOwner() returns (bool) {
-        uint256 amount = highestBid.bidAmount;
-        bids[highestBid.bidder] = 0;
-        highestBid.bidder = address(0);
-        highestBid.bidAmount = 0;
+        uint256 amount = tradedPoolCapacity.bidAmount;
+        bids[tradedPoolCapacity.bidders] = 0;
+        tradedPoolCapacity.bidders = address(0);
+        tradedPoolCapacity.bidAmount = 0;
 
         (bool success, ) = payable(owner).call{ value: amount }("");
         require(success, 'Withdrawal failed.');
@@ -76,9 +78,9 @@ contract Auction {
         return true;
     }
 
-    function fetchHighestBid() public view returns (HighestBid memory) {
-        HighestBid memory _highestBid = highestBid;
-        return _highestBid;
+    function fetchBestBid() public view returns (TradedPoolCapacity memory) {
+        TradedPoolCapacity memory _tradedPoolCapacity = tradedPoolCapacity;
+        return _tradedPoolCapacity;
     }
 
     function getOwner() public view returns (address) {
