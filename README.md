@@ -25,7 +25,7 @@ NOTE: use ```npm install --global yarn``` if prompt command not found: yarn
 
 ## Installation
 
-### Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
+#### Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
 Before running the file, make sure all packages are installed. Execute the following on the command line interface in your computer's terminal. 
 
 Download or clone the repository
