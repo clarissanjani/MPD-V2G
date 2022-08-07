@@ -25,7 +25,7 @@ NOTE: use ```npm install --global yarn``` if prompt command not found: yarn
 
 ## Installation
 
-## Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
+### Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
 Before running the file, make sure all packages are installed. Execute the following on the command line interface in your computer's terminal. 
 
 Download or clone the repository
@@ -48,7 +48,7 @@ truffle develop
 test
 ```
 
-Run the React Native application (All mentioned technical prerequisites are required, and a Google Chrome browser)
+#### Run the React Native application (All mentioned technical prerequisites are required, and a Google Chrome browser)
 1. Change to the client directory
 
 ```
