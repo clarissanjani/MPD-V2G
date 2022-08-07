@@ -23,19 +23,16 @@ yarn add ethers @ethersproject/units
 NOTE: use ```npm install --global yarn``` if prompt command not found: yarn
 
 
-## Installation
-
-#### Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
-Before running the file, make sure all packages are installed. Execute the following on the command line interface in your computer's terminal. 
-
-Download or clone the repository
-
+## Running the files
+Fist of all, download or clone the repository
 ```
 git clone https://github.com/clarissanjani/Trixo-Application.git
 ```
 
-Run on the command line interface
-1, Compile contract
+Before running the file, make sure all packages are installed. Execute the following on the command line interface in your computer's terminal. 
+
+#### Running the files on the command line interface (Truffle, Ethers.js and Node.js required)
+1. Compile contract
 
 ```
 truffle compile
@@ -49,6 +46,7 @@ test
 ```
 
 #### Run the React Native application (All mentioned technical prerequisites are required, and a Google Chrome browser)
+Setup of local Ganache test network is needed as well as the steps related to running on the command line interface
 1. Change to the client directory
 
 ```
@@ -79,4 +77,8 @@ Project Organization
     
 
 ## Credits and References
+https://dev.to/yongchanghe/build-a-simple-dapp-using-truffle-ganache-ethersjs-and-react1-52bl
 
+https://mui.com
+
+https://theryanmiller.com/solidity-development-with-truffle-and-ganache.html
