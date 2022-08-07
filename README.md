@@ -68,8 +68,8 @@ npm start
 ## Known issues
 **Slider in React Application**: Slider doees not automatically update the text values of the capacities
 
-Project Organization
-------------
+## Project Organization
+
         * **test folder**: contains Auction.test.js used to run test cases for testing the smart contract
         * **contracts folder**: Contains \textit{Auction.sol}: Auction.sol is a solidity file where the main parameters of the charging session is defined for creating the smart contract
         * **migrations folder*: contains 1\_initial\_migration\_js : specifies contracts to deploy to the network
