@@ -66,15 +66,18 @@ npm start
 ```
 
 ## Known issues
-**xx**: xx
+**Slider in React Application**: Slider doees not automatically update the text values of the capacities
 
 Project Organization
 ------------
+        * **test folder**: contains Auction.test.js used to run test cases for testing the smart contract
+        * **contracts folder**: Contains \textit{Auction.sol}: Auction.sol is a solidity file where the main parameters of the charging session is defined for creating the smart contract
+        * **migrations folder*: contains 1\_initial\_migration\_js : specifies contracts to deploy to the network
+        * **src folder*: Contains implementation code of React Native front-end.
+        App.js file interacts sends input from user input to with smart contract.
+        * **truffle-config.js**: defines for truffle which network to connect to and what network to publish contracts to, which in our case is our local Ganache network file
+        * **package-lock.json and package.json**: file that was generated from \textit{npm install} for the dependencies
 
-    ├── client           <- The top-level README for developers using this project.
-    └── test
-        ├── ...
-    
 
 ## Credits and References
 https://dev.to/yongchanghe/build-a-simple-dapp-using-truffle-ganache-ethersjs-and-react1-52bl
