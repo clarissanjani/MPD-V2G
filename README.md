@@ -17,6 +17,7 @@ The following prerequisites are required to test the dApp. The corresponding ins
 ```
 cd client
 ```
+```
 yarn add ethers @ethersproject/units
 ```
 NOTE: use npm install --global yarn if prompt command not found: yarn
