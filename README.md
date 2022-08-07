@@ -1,4 +1,5 @@
 # Trixo-Application
+Clarissa Anjani, Leonie Freisinger, Lisa Mangertseder, Johannes Lutz, Vladislav Klaas
 
 # Final Project Submission
 As part of the CDTM course, Managing Product Development (MPD), we worked on a challenge provided by our project partner, Entrix who posed the question: *how can blockchain technology increase the flexibility of the energy system?* As a result, we have developed Trixo, a blockchain-enabled solution for electric vehicle (EV) owners to participate in vehicle-to-grid (V2G). This allows EV owners to unlock the full potential of their electric vehicle batteries. The objective of our proposed solution is to provide a minimum viable product to show the core capabilities of a blockchain network for bi-directional charging. In this repository, we provide a proof of concept to showcase a dApp where we mocked up a network of electric vehicles.
