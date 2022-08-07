@@ -14,13 +14,13 @@ The following prerequisites are required to test the dApp. The corresponding ins
 * **Ganache**: personal Ethereum Blockchain used to test smart contracts where you can deploy contracts, develop applications, run tests and perform other tasks without any cost > https://trufflesuite.com/ganache/
 * **Truffle**: development environment, testing framework and asset pipeline for blockchains using the Ethereum Virtual Machine (EVM), aiming to compile smart contracts for development purposes > https://trufflesuite.com/docs/truffle/getting-started/installation/
 * **Ethers.js**: JavaScript library for Web3 development and interacting with the Ethereum Blockchain ecosystem. It is an alternative to Web3.js which we had trouble using due to the higher number of dependencies that required installing
- ```
+```
 cd client
 ```
 yarn add ethers @ethersproject/units
 ```
 NOTE: use npm install --global yarn if prompt command not found: yarn
-```
+
 
 ## Installation
 
