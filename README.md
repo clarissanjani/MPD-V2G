@@ -13,7 +13,7 @@ The following prerequisites are required to test the dApp. The corresponding ins
 * **Metamask**: Google Chrome extension used to test the submission of one single charging session and how the transaction went through > https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en
 * **Ganache**: personal Ethereum Blockchain used to test smart contracts where you can deploy contracts, develop applications, run tests and perform other tasks without any cost > https://trufflesuite.com/ganache/
 * **Truffle**: development environment, testing framework and asset pipeline for blockchains using the Ethereum Virtual Machine (EVM), aiming to compile smart contracts for development purposes > https://trufflesuite.com/docs/truffle/getting-started/installation/
-* **Ethers.js**: JavaScript library for Web3 development and interacting with the Ethereum Blockchain ecosystem. It is an alternative to Web3.js which we had trouble using due to the higher number of dependencies that required installing
+* **Ethers.js**: JavaScript library for Web3 development and interacting with the Ethereum Blockchain ecosystem.
 ```
 cd client
 ```
