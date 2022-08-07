@@ -20,7 +20,7 @@ cd client
 ```
 yarn add ethers @ethersproject/units
 ```
-NOTE: use npm install --global yarn if prompt command not found: yarn
+NOTE: use ```npm install --global yarn``` if prompt command not found: yarn
 
 
 ## Installation
