@@ -17,7 +17,7 @@ contract Auction {
     struct TradedPoolCapacity {
         uint256 bidAmount;
         uint256 sellingPrice;
-        address bidders; // code for the bidders @inheritdoc single traading capacity
+        address bidders; // traded pol capacity needs to be bid
     }
 
     ElectricVehicle public newElectricVehicle;
